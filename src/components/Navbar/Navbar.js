@@ -9,7 +9,9 @@ class Navbar extends Component {
         return (
             <header className={styles.header}>
                 <div className={styles.header__logo}>
-                    <img src={logo} alt="LogoType" className={styles.header__image}/>
+                    <Link to={ROUTES.HOME}>
+                        <img src={logo} alt="LogoType" className={styles.header__image}/>
+                    </Link>
                 </div>
                 <nav className={styles.nav__list}>
                     <Link to={ROUTES.HOME}>Home Page</Link>
