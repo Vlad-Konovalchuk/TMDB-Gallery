@@ -57,25 +57,35 @@ class MovieDetails extends Component {
             <section className={styles.movie}>
                 {
                     loading ? <Loader/> :
-                        <div className="wrapper">
-                            <div className="movie__poster">
+                        <div className={styles.movie__wrapper}>
+                            <div className={styles.movie__poster}>
                                 <img src={`http://image.tmdb.org/t/p/w300${poster}`} alt='dsds'/>
                             </div>
                             <div className="movie__details">
-                                <h1>{originalTitle}</h1>
-                                <p>{overview}</p>
-                                <p>{releaseDate}</p>
-                                <p>{budget}</p>
-                                <ul>
-                                    {genres.map(item => <li key={item.id}>{item.name}</li>)}
+                                <h1 className={styles.movie__title}>Title: {originalTitle}</h1>
+                                <p className={styles.movie__overview}>
+                                    <h3>Description:</h3><br/>
+                                    {overview}
+                                </p>
+                                <ul className={styles.genre__list}>
+                                    <h3 className={styles.genre__title}>Genres:</h3>
+                                    {genres.map(item => <li className={styles.genre__list__item} key={item.id}>{item.name},</li>)}
                                 </ul>
-                                <ul>
-                                    <h2>Countries</h2>
-                                    {countries.map(item => <li key={item.name}>{item.name}</li>)}
+                                <p className={styles.movie__date}>
+                                    <strong>Release Date: </strong>
+                                    {releaseDate}
+                                </p>
+                                <p>
+                                    <strong> Movie Budget: </strong>
+                                    {budget}
+                                </p>
+                                <h4>Countries</h4>
+                                <ul className={styles.movie__list}>
+                                    {countries.map(item => <li className={styles.movie__list__item} key={item.name}>{item.name}</li>)}
                                 </ul>
-                                <ul>
-                                    <h2>Companies</h2>
-                                    {companies.map(item => <li key={item.id}>{item.name}</li>)}
+                                <h4>Companies</h4>
+                                <ul className={styles.movie__list}>
+                                    {companies.map(item => <li className={styles.movie__list__item} key={item.id}>{item.name}</li>)}
                                 </ul>
                             </div>
                         </div>
