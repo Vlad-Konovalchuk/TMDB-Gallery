@@ -8,12 +8,17 @@ import Loader from "../Loader/Loader";
 
 class MovieDetails extends Component {
     state = {
-        movie: [],
         loading: false,
         errors: null,
-        budget:null,
-        genres:[],
-        id:null
+        genres: [],
+        id: null,
+        originalTitle: null,
+        overview: null,
+        releaseDate: null,
+        budget: null,
+        poster: null,
+        countries: [],
+        companies: [],
     };
 
     getMovieDetails = async () => {
@@ -25,50 +30,53 @@ class MovieDetails extends Component {
         try {
             this.setState({loading: true});
             const movie = await this.getMovieDetails();
-            console.log(movie);
-            this.setState({movie: movie,loading:false})
-            // this.setState((state, props) => ({
-            //     movie: movie
-            // }));
+            // console.log(movie);
+            this.setState({
+                genres: movie.genres,
+                id: movie.id,
+                originalTitle: movie.original_title,
+                overview: movie.overview,
+                releaseDate: movie.release_date,
+                budget: movie.budget,
+                poster: movie.poster_path,
+                countries: movie.production_countries,
+                companies: movie.production_companies,
+            })
         } catch (e) {
             console.log(e);
             this.setState({errors: e})
-        }
-        finally {
-            if(this.state.movie.length > 0){
-                console.log('set false')
-                this.setState({loading:false})
-            }
+        } finally {
+            this.setState({loading: false})
+
         }
     }
 
     render() {
-        const {movie = [], loading} = this.state;
+        const {loading, budget, companies = [], countries = [], genres = [], originalTitle, overview, poster, releaseDate} = this.state;
         return (
             <section className={styles.movie}>
                 {
                     loading ? <Loader/> :
                         <div className="wrapper">
                             <div className="movie__poster">
-                                <img src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`} alt='dsds'/>
+                                <img src={`http://image.tmdb.org/t/p/w300${poster}`} alt='dsds'/>
                             </div>
                             <div className="movie__details">
-                                <h1>{movie.original_title}</h1>
-                                <p>{movie.overview}</p>
-                                <p>{movie.release_date}</p>
-                                <p>{movie.budget}</p>
+                                <h1>{originalTitle}</h1>
+                                <p>{overview}</p>
+                                <p>{releaseDate}</p>
+                                <p>{budget}</p>
                                 <ul>
-                                    {console.log(movie)}
-                                    {/*{movie.genres.map(item => <li key={item.id}>{item.name}</li>)}*/}
+                                    {genres.map(item => <li key={item.id}>{item.name}</li>)}
                                 </ul>
-                                {/*<ul>*/}
-                                {/*<h2>Countries</h2>*/}
-                                {/*{movie.production_countries.map(item => <li key={item.name}>{item.name}</li>)}*/}
-                                {/*</ul>*/}
-                                {/*<ul>*/}
-                                {/*<h2>Companies</h2>*/}
-                                {/*{movie.production_companies.map(item => <li key={item.id}>{item.name}</li>)}*/}
-                                {/*</ul>*/}
+                                <ul>
+                                    <h2>Countries</h2>
+                                    {countries.map(item => <li key={item.name}>{item.name}</li>)}
+                                </ul>
+                                <ul>
+                                    <h2>Companies</h2>
+                                    {companies.map(item => <li key={item.id}>{item.name}</li>)}
+                                </ul>
                             </div>
                         </div>
                 }
