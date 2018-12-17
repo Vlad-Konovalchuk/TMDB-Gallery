@@ -1,0 +1,17 @@
+.post {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.post__image {
+    width: 100%;
+    height: auto;
+}
+
+.post__logo {
+    flex:1;
+}
+.post__description {
+    flex: 2;
+}
