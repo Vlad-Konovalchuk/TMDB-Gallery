@@ -12,15 +12,18 @@
 .movie__poster {
     margin-right: 1.5rem;
 }
+.movie__details {
 
+}
 .movie__title {
-
+    text-align: center;
+    font-weight: 500;
 }
-
-.movie__overview {
-
+.sub__title {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
 }
-
 .movie__date {
 
 }
