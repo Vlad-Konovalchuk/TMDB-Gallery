@@ -15,7 +15,6 @@ const NewsItem = (props) => {
                 <h2 className={styles.post__title}>{props.title}</h2>
                 <p className={styles.post__content}>{props.description}</p>
             </div>
-            {/*{console.log(props)}*/}
         </li>
     )
 };

@@ -10,13 +10,8 @@ import MovieDetails from "./components/MovieDetails/MovieDetails";
 import MovieListContainer from "./components/MovieListContainer/MovieListContainer";
 
 class App extends Component {
-    state = {
-        coming: 'https://api.themoviedb.org/3/movie/upcoming?api_key=113d04e11b8b3f9f579000f0d91c2bcb&language=en-US&page=1',
-
-    };
 
     render() {
-        const {coming} = this.state;
         return (
             <div className={styles.app}>
                 <Navbar/>

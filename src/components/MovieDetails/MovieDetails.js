@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import styles from './MovieDetails.module.css';
 import axios from "axios";
-import {BASE_URL, POSTER_URL} from "../../urlPath";
+import {BASE_URL, POSTER_BIG_URL} from "../../urlPath";
 import {TMDB_API_KEY} from "../../auth";
-import {Link} from "react-router-dom";
 import Loader from "../Loader/Loader";
 
 class MovieDetails extends Component {
@@ -30,7 +29,6 @@ class MovieDetails extends Component {
         try {
             this.setState({loading: true});
             const movie = await this.getMovieDetails();
-            // console.log(movie);
             this.setState({
                 genres: movie.genres,
                 id: movie.id,
@@ -47,7 +45,6 @@ class MovieDetails extends Component {
             this.setState({errors: e})
         } finally {
             this.setState({loading: false})
-
         }
     }
 
@@ -59,7 +56,7 @@ class MovieDetails extends Component {
                     loading ? <Loader/> :
                         <div className={styles.movie__wrapper}>
                             <div className={styles.movie__poster}>
-                                <img src={`http://image.tmdb.org/t/p/w300${poster}`} alt='dsds'/>
+                                <img src={`${POSTER_BIG_URL}${poster}`} alt={originalTitle}/>
                             </div>
                             <div className="movie__details">
                                 <h1 className={styles.movie__title}>Title: {originalTitle}</h1>
@@ -69,7 +66,8 @@ class MovieDetails extends Component {
                                 </p>
                                 <ul className={styles.genre__list}>
                                     <h3 className={styles.genre__title}>Genres:</h3>
-                                    {genres.map(item => <li className={styles.genre__list__item} key={item.id}>{item.name},</li>)}
+                                    {genres.map(item => <li className={styles.genre__list__item}
+                                                            key={item.id}>{item.name},</li>)}
                                 </ul>
                                 <p className={styles.movie__date}>
                                     <strong>Release Date: </strong>
@@ -81,11 +79,13 @@ class MovieDetails extends Component {
                                 </p>
                                 <h4>Countries</h4>
                                 <ul className={styles.movie__list}>
-                                    {countries.map(item => <li className={styles.movie__list__item} key={item.name}>{item.name}</li>)}
+                                    {countries.map(item => <li className={styles.movie__list__item}
+                                                               key={item.name}>{item.name}</li>)}
                                 </ul>
                                 <h4>Companies</h4>
                                 <ul className={styles.movie__list}>
-                                    {companies.map(item => <li className={styles.movie__list__item} key={item.id}>{item.name}</li>)}
+                                    {companies.map(item => <li className={styles.movie__list__item}
+                                                               key={item.id}>{item.name}</li>)}
                                 </ul>
                             </div>
                         </div>
