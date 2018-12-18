@@ -2,3 +2,12 @@
     height: 100%;
 }
 
+.title {
+    text-align: center;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2.5rem;
+}
