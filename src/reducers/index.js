@@ -9,14 +9,22 @@ import {ADD_POST} from "../actionTypes";
 
 
 const initialState = {
-    posts: []
+    posts: [
+        {id:231,name:'Alex'},
+        {id:312,name:'Mike'},
+        {id:123,name:'John'},
+        {id:114,name:'Dick'},
+    ]
 };
 
 function rootReducer(state = initialState, action) {
+    let {posts} = state;
     switch (action.type) {
         case ADD_POST:
-            console.log('ADD_POST');
-            state.posts = [...state.posts,action.payload];
+            // state.posts = [...state.posts,action.payload];
+            // return state.posts = [...posts,action.payload];
+            console.log({...state,posts:[...state.posts,action.payload]});
+            return {...state,posts:[...state.posts,action.payload]};
             break;
         default:
             return state
