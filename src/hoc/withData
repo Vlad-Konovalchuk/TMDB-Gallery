@@ -1,0 +1,11 @@
+import React, { Component} from 'react'
+
+const withData = () => {
+    return class extends Component {
+        render() {
+            return console.log('Item')
+        }
+    }
+};
+
+export default withData;

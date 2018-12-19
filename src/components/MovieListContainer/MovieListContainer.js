@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import styles from './MovieListContainer.module.css';
 import axios from 'axios';
-import {POPULAR_FILMS} from '../../urlPath';
 import {TMDB_API_KEY} from '../../auth';
 import MovieItem from "../MovieItem/MovieItem";
+import Loader from "../Loader/Loader";
 
 class MovieListContainer extends Component {
     constructor(props){
@@ -41,7 +41,7 @@ class MovieListContainer extends Component {
         return (
             <section className={styles.main}>
                 <ul className={styles.movies__list}>
-                    {loading ? <h2>The list of films has already flown to you</h2> : <MovieItem movie={films}/>}
+                    {loading ? <Loader/> : <MovieItem movie={films}/>}
                 </ul>
             </section>
         );
