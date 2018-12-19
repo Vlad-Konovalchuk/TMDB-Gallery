@@ -15,23 +15,27 @@ class App extends Component {
 
     };
 
-    render() {
-        const {coming} = this.state;
-        return (
-            <div className={styles.app}>
-                <Navbar/>
-                <main className={styles.layout}>
-                    <Switch>
-                        <Route path={ROUTES.COMINGSOON} component={(props) => (<MovieListContainer {...props} category={URL.COMING_FILMS}/> )} />
-                        <Route path={ROUTES.NOW_PLAYING_FILMS} component={(props) => (<MovieListContainer {...props} category={URL.NOW_PLAYING_FILMS}/> )} />
-                        <Route path={ROUTES.TOP_RATED} component={(props) => (<MovieListContainer {...props} category={URL.TOP_RATED_FILMS}/> )} />
-                        <Route path={`${ROUTES.MOVIELIST}/:id`} component={MovieDetails}/>
-                        <Route path={ROUTES.HOME} exact component={Main}/>
-                    </Switch>
-                </main>
-                <Footer/>
-            </div>
-        );
+    // render() {
+    //     const {coming} = this.state;
+    //     return (
+    //         <div className={styles.app}>
+    //             <Navbar/>
+    //             <main className={styles.layout}>
+    //                 <Switch>
+    //                     <Route path={ROUTES.COMINGSOON} component={(props) => (<MovieListContainer {...props} category={URL.COMING_FILMS}/> )} />
+    //                     <Route path={ROUTES.NOW_PLAYING_FILMS} component={(props) => (<MovieListContainer {...props} category={URL.NOW_PLAYING_FILMS}/> )} />
+    //                     <Route path={ROUTES.TOP_RATED} component={(props) => (<MovieListContainer {...props} category={URL.TOP_RATED_FILMS}/> )} />
+    //                     <Route path={`${ROUTES.MOVIELIST}/:id`} component={MovieDetails}/>
+    //                     <Route path={ROUTES.HOME} exact component={Main}/>
+    //                 </Switch>
+    //             </main>
+    //             <Footer/>
+    //         </div>
+    //     );
+    // }
+
+    render(){
+        return <Main/>
     }
 }
 
