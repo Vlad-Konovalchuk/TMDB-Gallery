@@ -1,11 +1,11 @@
 .app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .layout {
-    height: 100vh;
-    flex: 1;
-    overflow-y: scroll;
+  height: 100vh;
+  flex: 1;
+  overflow-y: scroll;
 }
