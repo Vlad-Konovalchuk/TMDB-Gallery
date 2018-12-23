@@ -6,8 +6,8 @@ import {Route, Switch} from "react-router-dom";
 import Main from "./components/Main/Main";
 import * as ROUTES from "./routes";
 import * as URL from "./urlPath";
-import MovieDetails from "./components/MovieDetails/MovieDetails";
-import MovieListContainer from "./components/MovieListContainer/MovieListContainer";
+import MovieDetails from "./containers/MovieDetailsContainer/MovieDetailsContainer";
+import MovieListContainer from "./containers/MovieListContainer/MovieListContainer";
 import {ConnectedRouter} from 'connected-react-router'
 
 class App extends Component {

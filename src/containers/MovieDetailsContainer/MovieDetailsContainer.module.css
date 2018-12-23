@@ -1,0 +1,54 @@
+.movie {
+    height: 100%;
+    display: flex;
+}
+
+.movie__wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem;
+}
+
+.movie__poster {
+    margin-right: 1.5rem;
+}
+
+.movie__details {
+}
+
+.movie__title {
+    text-align: center;
+    font-weight: 500;
+}
+
+.sub__title {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.movie__date {
+}
+
+.genre__list {
+    all: unset;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.genre__title {
+    margin: 0;
+    padding: 0;
+}
+
+.genre__list__item {
+    all: unset;
+    margin: 0 0.2rem;
+}
+
+.movie__list {
+}
+
+.movie__list__item {
+}

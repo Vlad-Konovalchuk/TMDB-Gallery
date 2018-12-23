@@ -9,13 +9,9 @@ export function moviesReducer(state = initialState, action) {
     switch (action.type) {
         case type.IS_LOADING:
             return {...state, isLoading: action.payload};
-            break;
         case type.MOVIES_FETCHED:
             return {...state, movies: action.payload};
-            break;
         default:
             return state;
     }
-
-    return state;
 }

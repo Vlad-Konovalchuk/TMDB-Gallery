@@ -1,29 +1,29 @@
 import React, {Component} from "react";
-import styles from "./MovieDetails.module.css";
-import Loader from "../Loader/Loader";
-import MovieDetailsItemLayout from "./MovieDetailsItemLayout";
+import styles from "./MovieDetailsContainer.module.css";
 import {connect} from "react-redux";
 import {getMovieItem} from "../../actions/movieItem";
+import Loader from "../../components/Loader/Loader";
+import MovieDetailsItemLayout from "../../components/MovieDetails/MovieDetailsItemLayout";
 
 class MovieDetails extends Component {
 
 
-/*    getMovieDetails = async () => {
-        const response = await axios.get(
-            `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${TMDB_API_KEY}`
-        );
-        return response.data;
-    };
-    getCrewInfo = async () => {
-        const credits = await axios.get(
-            `${BASE_URL}/movie/${
-                this.props.match.params.id
-                }/credits?api_key=${TMDB_API_KEY}`
-        );
-        return credits.data;
-    };*/
+    /*    getMovieDetails = async () => {
+            const response = await axios.get(
+                `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${TMDB_API_KEY}`
+            );
+            return response.data;
+        };
+        getCrewInfo = async () => {
+            const credits = await axios.get(
+                `${BASE_URL}/movie/${
+                    this.props.match.params.id
+                    }/credits?api_key=${TMDB_API_KEY}`
+            );
+            return credits.data;
+        };*/
 
-componentDidMount() {
+    componentDidMount() {
         this.props.getMovieItem(this.props.match.params.id)
     }
 

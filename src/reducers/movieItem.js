@@ -14,6 +14,4 @@ export function movieItemReducer(state = initialState, action) {
         default:
             return state;
     }
-
-    return state;
 }
