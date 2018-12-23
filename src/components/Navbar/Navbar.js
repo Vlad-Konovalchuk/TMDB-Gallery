@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styles from "./Navbar.module.css";
 import * as ROUTES from "../../routes";
 import logo from "../../icon.svg";
+import Search from "../MovieSearch/MovieSearch";
 
 const Navbar = () => {
     return (
@@ -18,6 +19,7 @@ const Navbar = () => {
                 <Link to={ROUTES.NOW_PLAYING_FILMS}>Now in cinema</Link>
                 <Link to={ROUTES.TOP_RATED}>Top Rated</Link>
             </nav>
+            <Search/>
         </header>
     );
 };
