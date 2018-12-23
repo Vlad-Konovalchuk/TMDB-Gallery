@@ -9,7 +9,8 @@ export const getMovieItem = (id) => async (dispatch) => {
         const response = await axios.get(
             `${BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}`
         );
-        dispatch({type: MOVIE_ITEM_FETCHED, payload: response.data.results});
+        console.log(response.data);
+        dispatch({type: MOVIE_ITEM_FETCHED, payload: response.data});
     } catch (e) {
         dispatch({type: FETCH_ERROR, payload: true});
 

@@ -10,14 +10,14 @@ const MovieDetailsItemLayout = props => {
     genres = [],
     originalTitle,
     overview,
-    poster,
+    poster_path,
     releaseDate
   } = props.info;
   return (
     <div className={styles.movie__wrapper}>
       <div className={styles.movie__poster}>
         <img
-          src={`http://image.tmdb.org/t/p/w300${poster}`}
+          src={`http://image.tmdb.org/t/p/w300${poster_path}`}
           alt={originalTitle}
         />
       </div>
