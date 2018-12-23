@@ -40,7 +40,14 @@
   margin: 0 0.2rem;
 }
 .movie__list {
+  all:unset;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .movie__list__item {
+  all: unset;
+  margin: 0 1rem;
 }
