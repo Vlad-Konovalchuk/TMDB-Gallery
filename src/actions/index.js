@@ -1,43 +1,43 @@
-import * as type from "../actionTypes/index";
+import * as type from "./typeConstants";
 
 import axios from 'axios';
 
-export const addTodo = ({ title, userId }) => {
-  return dispatch => {
-    dispatch(addTodoStarted());
+// export const addMovies = ({ title, userId }) => {
+//   return dispatch => {
+//     dispatch(addTodoStarted());
+//
+//     axios
+//         .post(`https://jsonplaceholder.typicode.com/todos`, {
+//           title,
+//           userId,
+//           completed: false
+//         })
+//         .then(res => {
+//           dispatch(addTodoSuccess(res.data));
+//         })
+//         .catch(err => {
+//           dispatch(addTodoFailure(err.message));
+//         });
+//   };
+// };
 
-    axios
-        .post(`https://jsonplaceholder.typicode.com/todos`, {
-          title,
-          userId,
-          completed: false
-        })
-        .then(res => {
-          dispatch(addTodoSuccess(res.data));
-        })
-        .catch(err => {
-          dispatch(addTodoFailure(err.message));
-        });
-  };
-};
+export function itemsHasErrored(bool) {
+    return {
+        type: type.FETCH_ERROR,
+        hasErrored: bool
+    };
+}
 
-const addTodoSuccess = todo => ({
-  type: ADD_TODO_SUCCESS,
-  payload: {
-    ...todo
-  }
-});
+export function moviesIsLoading(bool) {
+    return {
+        type: type.IS_LOADING,
+        isLoading: bool
+    };
+}
 
-const addTodoStarted = () => ({
-  type: ADD_TODO_STARTED
-});
-
-const addTodoFailure = error => ({
-  type: ADD_TODO_FAILURE,
-  payload: {
-    error
-  }
-});
-export function addArticle(payload) {
-  return { type: type.ADD_POST, payload };
+export function moviesFetchDataSuccess(movies) {
+    return {
+        type: type.MOVIES_FETCHED,
+        movies
+    };
 }

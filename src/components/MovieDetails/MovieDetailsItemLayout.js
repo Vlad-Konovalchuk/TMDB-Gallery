@@ -40,7 +40,7 @@ const MovieDetailsItemLayout = props => {
           {releaseDate}
         </p>
         <p>
-          <h3 className={styles.sub__title}> Movie Budget: </h3>
+          <span className={styles.sub__title}> Movie Budget: </span>
           {budget}
         </p>
         <div className={styles.movie__footer}>

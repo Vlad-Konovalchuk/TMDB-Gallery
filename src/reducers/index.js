@@ -1,33 +1,12 @@
-import { combineReducers } from "redux";
-import { ADD_POST } from "../actionTypes";
+import {combineReducers} from 'redux'
+import {connectRouter} from 'connected-react-router'
+import {moviesReducer} from "./movies";
+import {movieItemReducer} from "./movieItem";
 
-// import {routeReducer} from 'react-router-redux'
 
-// export default combineReducers(({
-//  routing:routeReducer
-// }))
+export const rootReducer = (history) => combineReducers({
+    movies: moviesReducer,
+    movieItem:movieItemReducer,
+    router: connectRouter(history)
+});
 
-const initialState = {
-  posts: [
-    { id: 231, name: "Alex" },
-    { id: 312, name: "Mike" },
-    { id: 123, name: "John" },
-    { id: 114, name: "Dick" }
-  ]
-};
-
-export function rootReducer(state = initialState, action) {
-  let { posts } = state;
-  switch (action.type) {
-    case ADD_POST:
-      // state.posts = [...state.posts,action.payload];
-      // return state.posts = [...posts,action.payload];
-      console.log({ ...state, posts: [...state.posts, action.payload] });
-      return { ...state, posts: [...state.posts, action.payload] };
-      break;
-    default:
-      return state;
-  }
-
-  return state;
-}

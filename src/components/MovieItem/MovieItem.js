@@ -4,15 +4,16 @@ import styles from "./MovieItem.module.css";
 import * as ROUTES from "../../routes";
 import { POSTER_URL } from "../../urlPath";
 
-const MovieItem = props => {
-  return props.movie.map(item => {
+const MovieItem = ({movies}) => {
+  // const data = props.movies;
+  return movies.map(item => {
     return (
       <li key={item.id} className={styles.movies__item}>
         <Link to={`${ROUTES.MOVIELIST}/${item.id}`}>
           <img
             src={POSTER_URL + item.poster_path}
             alt={item.title}
-            className={styles.movoies__poster}
+            className={styles.movies__poster}
           />
           <div className={styles.movie__info}>
             <h2>{item.title}</h2>

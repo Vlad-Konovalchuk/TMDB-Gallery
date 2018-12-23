@@ -1,0 +1,4 @@
+export const IS_LOADING = "IS_LOADING";
+export const FETCH_ERROR = "FETCH_ERROR";
+export const MOVIES_FETCHED = "MOVIES_FETCHED";
+export const MOVIE_ITEM_FETCHED = "MOVIE_ITEM_FETCHED";

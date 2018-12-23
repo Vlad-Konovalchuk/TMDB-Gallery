@@ -1,51 +1,51 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import styles from "./MovieListContainer.module.css";
-import axios from "axios";
-import { TMDB_API_KEY } from "../../auth";
 import MovieItem from "../MovieItem/MovieItem";
 import Loader from "../Loader/Loader";
+import {getMovies} from "../../actions/movies";
+import {connect} from "react-redux";
 
 class MovieListContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    films: [],
-    loading: false,
-    errors: null
-  };
-
-  getFilms = async () => {
-    const { category } = this.props;
-    const response = await axios.get(`${category}${TMDB_API_KEY}`);
-    return response.data;
-  };
-
-  async componentDidMount() {
-    console.log(this.props);
-    try {
-      this.setState({ loading: true });
-      const films = await this.getFilms();
-      console.log(films);
-      this.setState({ films: films.results });
-    } catch (e) {
-      console.log(e);
-      this.setState({ errors: e });
-    } finally {
-      this.setState({ loading: false });
+    constructor(props) {
+        super(props);
     }
-  }
 
-  render() {
-    const { loading, films = [] } = this.state;
-    return (
-      <section className={styles.main}>
-        <ul className={styles.movies__list}>
-          {loading ? <Loader /> : <MovieItem movie={films} />}
-        </ul>
-      </section>
-    );
-  }
+    async componentDidMount() {
+        const {category} = this.props;
+        try {
+            this.props.addArticle(category);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    render() {
+        const {isLoading, movies} = this.props;
+        return (
+            <section className={styles.main}>
+                <ul className={styles.movies__list}>
+                    {console.log(movies)}
+                    {isLoading ? <Loader/> : <MovieItem movies={movies}/>}
+                </ul>
+            </section>
+        );
+    }
 }
 
-export default MovieListContainer;
+function mapDispatchToProps(dispatch) {
+    return {
+        addArticle: (category) => {
+            dispatch(getMovies(category))
+        }
+    };
+}
+
+const mapStateToProps = state => {
+    return {movies: state.movies.movies, isLoading: state.movies.isLoading};
+};
+
+const MovieListContainerConnected = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MovieListContainer);
+export default MovieListContainerConnected;
