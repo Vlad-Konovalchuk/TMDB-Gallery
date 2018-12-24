@@ -4,10 +4,11 @@ import {connect} from "react-redux";
 import {getMovieItem} from "../../actions/movieItem";
 import Loader from "../../components/Loader/Loader";
 import MovieDetailsItemLayout from "../../components/MovieDetails/MovieDetailsItemLayout";
+import {Link} from 'react-router-dom'
 
 class MovieDetails extends Component {
 
-
+const a =23;
     /*    getMovieDetails = async () => {
             const response = await axios.get(
                 `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${TMDB_API_KEY}`
