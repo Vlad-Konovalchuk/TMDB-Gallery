@@ -17,8 +17,6 @@
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
     "eslint": "node_modules/.bin/eslint src/"
-
-
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,12 +33,5 @@
     "husky": "^1.2.1",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3"
-  },
-  "lint-staged": {
-    "*.{js, jsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
-      "prettier --write",
-      "git add"
-    ]
   }
 }
