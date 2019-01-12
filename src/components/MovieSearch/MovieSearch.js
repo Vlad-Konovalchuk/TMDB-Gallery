@@ -1,6 +1,5 @@
 import React from "react";
 import styles from './MovieSearch.module.css';
-import {TMDB_API_KEY} from "../../auth";
 import axios from "axios";
 
 class Search extends React.PureComponent {
@@ -11,7 +10,7 @@ class Search extends React.PureComponent {
         this.setState({value: e.target.value})
     };
     searchMovie = async (term) => {
-        const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${term}&page=1&include_adult=false`)
+        const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&language=en-US&query=${term}&page=1&include_adult=false`)
         console.log(response.data)
     };
     handleSubmit = (e) => {

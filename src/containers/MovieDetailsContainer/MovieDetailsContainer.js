@@ -10,7 +10,7 @@ class MovieDetails extends Component {
 
     /*    getMovieDetails = async () => {
             const response = await axios.get(
-                `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${TMDB_API_KEY}`
+                `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${process.env.TMDB_API_KEY}`
             );
             return response.data;
         };
@@ -18,7 +18,7 @@ class MovieDetails extends Component {
             const credits = await axios.get(
                 `${BASE_URL}/movie/${
                     this.props.match.params.id
-                    }/credits?api_key=${TMDB_API_KEY}`
+                    }/credits?api_key=${process.env.TMDB_API_KEY}`
             );
             return credits.data;
         };*/
