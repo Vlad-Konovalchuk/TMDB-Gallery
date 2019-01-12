@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom'
 
 class MovieDetails extends Component {
 
-const a =23;
     /*    getMovieDetails = async () => {
             const response = await axios.get(
                 `${BASE_URL}/movie/${this.props.match.params.id}?api_key=${TMDB_API_KEY}`

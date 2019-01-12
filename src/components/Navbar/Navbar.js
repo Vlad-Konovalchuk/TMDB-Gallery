@@ -19,7 +19,9 @@ const Navbar = () => {
                 <Link to={ROUTES.NOW_PLAYING_FILMS}>Now in cinema</Link>
                 <Link to={ROUTES.TOP_RATED}>Top Rated</Link>
             </nav>
+{/*
             <Search/>
+*/}
         </header>
     );
 };
