@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import styles from "./Main.module.css";
 import axios from "axios";
 import {TOP_RATED_FILMS} from "../../urlPath";
-import {NEWS_API_KEY, TMDB_API_KEY} from "../../auth";
 import NewsItem from "../NewsItem/NewsItem";
 import Loader from "../Loader/Loader";
 import {connect} from "react-redux";

@@ -1,0 +1,6 @@
+[build]
+  command = "yarn build"
+  publish = "build"
+
+[context.production.environment]
+  TMDB_API_KEY = "113d04e11b8b3f9f579000f0d91c2bcb"
