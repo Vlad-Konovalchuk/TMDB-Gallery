@@ -5,19 +5,20 @@
   transform: scale(1);
   transition: scale 0.6s;
   margin: 0.2rem 0.4rem;
-}
+  flex-basis: calc(100% / 5);
 
-.movies__item:hover {
-  transform: scale(1.2);
-  z-index: 2;
-}
+  &:hover {
+    transform: scale(1.2);
+    z-index: 2;
+  }
 
-.movies__item:hover .movie__info {
-  display: flex;
-}
+  &:hover .movie__info {
+    display: flex;
+  }
 
-.movies__item:hover .movies__poster {
-  filter: blur(3px);
+  &:hover .movies__poster {
+    filter: blur(3px);
+  }
 }
 
 .movie__info {

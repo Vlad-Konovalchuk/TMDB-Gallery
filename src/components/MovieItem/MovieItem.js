@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
-import styles from "./MovieItem.module.css";
+import styles from "./MovieItem.module.scss";
 import * as ROUTES from "../../routes";
 import { POSTER_URL } from "../../urlPath";
 

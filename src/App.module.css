@@ -7,5 +7,5 @@
 .layout {
   height: 100vh;
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
