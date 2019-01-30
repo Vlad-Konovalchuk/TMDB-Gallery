@@ -1,17 +1,17 @@
-import * as type from "../actions/typeConstants";
+import * as type from '../actions/typeConstants'
 
 const initialState = {
-    movies: [],
-    isLoading: false
-};
+  movies: [],
+  isLoading: false,
+}
 
 export function moviesReducer(state = initialState, action) {
-    switch (action.type) {
-        case type.IS_LOADING:
-            return {...state, isLoading: action.payload};
-        case type.MOVIES_FETCHED:
-            return {...state, movies: action.payload};
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case type.IS_LOADING:
+      return { ...state, isLoading: action.payload }
+    case type.MOVIES_FETCHED:
+      return { ...state, movies: action.payload }
+    default:
+      return state
+  }
 }

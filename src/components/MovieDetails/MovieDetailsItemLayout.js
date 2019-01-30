@@ -81,7 +81,7 @@ const MovieDetailsItemLayout = props => {
         </div>
       </section>
       <section className={styles.trailers}>
-        <div className={styles.video}>
+{/*        <div className={styles.video}>
           <a>
             <picture>
               <source srcSet="https://i.ytimg.com/vi_webp/bKdpGHazAqs/maxresdefault.webp" type="image/webp"/>
@@ -96,7 +96,8 @@ const MovieDetailsItemLayout = props => {
               <path className={styles['play-btn-icon']} d="M 45,24 27,14 27,34"></path>
             </svg>
           </button>
-        </div>
+        </div>*/}
+        <iframe src="" frameborder="0"></iframe>
       </section>
     </div>
   )
