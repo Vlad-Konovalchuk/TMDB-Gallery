@@ -97,7 +97,7 @@ const Navbar = () => {
 };
 */
 const Navbar = (props) => {
-  const { classes } = props
+  const { classes,searchHandler } = props
   return (
     <AppBar position="static">
       <Toolbar>
@@ -132,6 +132,7 @@ const Navbar = (props) => {
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
+            onKeyPress={searchHandler}
           />
         </div>
       </Toolbar>
