@@ -4,24 +4,23 @@ import styles from "./MovieItem.module.scss";
 import * as ROUTES from "../../routes";
 import { POSTER_URL } from "../../urlPath";
 
-const MovieItem = ({movies}) => {
+const MovieItem = ({movie}) => {
   // const data = props.movies;
-  return movies.map(item => {
+
     return (
-      <li key={item.id} className={styles.movies__item}>
-        <Link to={`${ROUTES.MOVIELIST}/${item.id}`}>
+      <li  className={styles.movies__item}>
+        <Link to={`${ROUTES.MOVIELIST}/${movie.id}`}>
           <img
-            src={POSTER_URL + item.poster_path}
-            alt={item.title}
+            src={POSTER_URL + movie.poster_path}
+            alt={movie.title}
             className={styles.movies__poster}
           />
           <div className={styles.movie__info}>
-            <h2>{item.title}</h2>
+            <h2>{movie.title}</h2>
           </div>
         </Link>
       </li>
     );
-  });
 };
 
 export default MovieItem;

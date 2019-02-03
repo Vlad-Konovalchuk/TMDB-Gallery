@@ -1,46 +1,53 @@
-import React, {Component} from "react";
-import styles from "./MovieListContainer.module.css";
-import {getMovies} from "../../actions/movies";
-import {connect} from "react-redux";
-import Loader from "../../components/Loader/Loader";
-import MovieItem from "../../components/MovieItem/MovieItem";
+import React, { PureComponent } from 'react';
+import styles from './MovieListContainer.module.css';
+import { getMovies } from '../../actions/movies';
+import { connect } from 'react-redux';
+import Loader from '../../components/Loader/Loader';
+import MovieItem from '../../components/MovieItem/MovieItem';
+import Grid from '@material-ui/core/Grid';
 
-class MovieListContainer extends Component {
-    componentDidMount() {
-        const {category} = this.props;
-        try {
-            this.props.addArticle(category);
-        } catch (e) {
-            console.log(e);
-        }
-    }
+class MovieListContainer extends PureComponent {
+  state = {
+    spacing: '16',
+  }
 
-    render() {
-        const {isLoading, movies} = this.props;
-        return (
-            <section className={styles.main}>
-                <ul className={styles.movies__list}>
-                    {console.log(movies)}
-                    {isLoading ? <Loader/> : <MovieItem movies={movies}/>}
-                </ul>
-            </section>
-        );
+  componentDidMount() {
+    const { category } = this.props
+    try {
+      this.props.getDetails(category)
+    } catch (e) {
+      throw new Error(e.message)
     }
+  }
+
+  render() {
+    const { isLoading, movies = [] } = this.props
+    const { spacing } = this.state
+    return (
+      <Grid item xs={12} className={styles.root} container justify="space-around" spacing={Number(spacing)}>
+        {isLoading ? <Loader/> : (
+          movies.map(movie => (
+            <Grid item><MovieItem key={movie.id} movie={movie}/></Grid>
+          ))
+        )}
+      </Grid>
+    )
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        addArticle: (category) => {
-            dispatch(getMovies(category))
-        }
-    };
+  return {
+    getDetails: (category) => {
+      dispatch(getMovies(category))
+    },
+  }
 }
 
 const mapStateToProps = state => {
-    return {movies: state.movies.movies, isLoading: state.movies.isLoading};
-};
+  return { movies: state.movies.movies, isLoading: state.movies.isLoading }
+}
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MovieListContainer);
+  mapStateToProps,
+  mapDispatchToProps,
+)(MovieListContainer)

@@ -1,11 +1,12 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+/*  display: flex;
+  flex-direction: column;*/
+  height: 100%;
 }
 
 .layout {
-  height: 100vh;
+  height: 100%;
   flex: 1;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
+  position: relative;
 }

@@ -1,75 +1,78 @@
-import React, {Component} from "react";
-import styles from "./Main.module.css";
-import axios from "axios";
-import {TOP_RATED_FILMS} from "../../urlPath";
-import NewsItem from "../NewsItem/NewsItem";
-import Loader from "../Loader/Loader";
-import {connect} from "react-redux";
-import {addArticle} from "../../actions";
-import {getMovies} from "../../actions/movies";
+import React, { Component } from 'react'
+import styles from './Main.module.css'
+import axios from 'axios'
+import { withStyles } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    state = {
-        user: ""
-    };
-
-    handleChacnge = e => {
-        this.setState({user: e.target.value});
-    };
-    handleSubmit = e => {
-        e.preventDefault();
-        const {user} = this.state;
-        const id = Math.floor(Math.random() * 10);
-        this.props.addArticle({name: user, id});
-        this.setState({user: ""});
-    };
-    // state = {
-    //     movies: []
-    // };
-    // getmovies = async () => {
-    //     const response = await axios.get(`${HOLLYWOOD_NEWS}${NEWS_API_KEY}`);
-    //     return response.data;
-    // };
-    //
-    // async componentDidMount() {
-    //     try {
-    //         this.setState({loading: true});
-    //         const movies = await this.getmovies();
-    //         console.log(movies);
-    //         this.setState({movies: movies.articles})
-    //     } catch (e) {
-    //         console.log(e);
-    //         this.setState({errors: e})
-    //     } finally {
-    //         this.setState({loading: false});
-    //     }
-    // }
-
-    render() {
-        // const {loading, movies = []} = this.state;
-        return (
-            <section className={styles.main}>
-                <h1 className={styles.title}>News from Hollywood</h1>
-                {/*<p className={styles.list}>*/}
-                    {/*/!*{loading ? <Loader/> : movies.map(post => <NewsItem {...post}/>)}*!/*/}
-                    {/*{this.props.movies.map(item => (*/}
-                        {/*<li key={item.id}>{item.title}</li>*/}
-                    {/*))}*/}
-                {/*</p>*/}
-                {/*<input*/}
-                    {/*type="text"*/}
-                    {/*value={this.state.user}*/}
-                    {/*onChange={this.handleChacnge}*/}
-                {/*/>*/}
-                {/*<button onClick={this.handleSubmit}>Send to store</button>*/}
-                {/*<p>{this.state.user}</p>*/}
-            </section>
-        );
-    }
+const stylesBeta = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
 }
 
-export default Main;
+class Main extends Component {
+  state = {
+    items: [],
+    spacing: 16,
+  }
+
+  getNewsItems = () => {
+    try {
+      return axios.get('https://newsapi.org/v2/everything?q=movies&apiKey=528fb017ce0c4f3c96e06bfda7644490')
+    } catch (e) {
+      // throw new Error(e.message)
+    }
+  }
+
+  componentDidMount() {
+    const data = this.getNewsItems()
+    data
+      .then(items => this.setState({ items: items.data.articles }))
+  }
+
+  render() {
+    const { items, spacing } = this.state
+    const { classes } = this.props
+    return (
+      <Grid item xs={12} container justify="space-around" spacing={Number(spacing)} style={{ padding: '1rem' }}>
+        {items.map(item => (
+          <Card className={classes.card} style={{ margin: '1rem', display: 'flex', flexDirection: 'column' }}>
+            <CardActionArea style={{ flex: '2' }}>
+              <CardMedia
+                className={classes.media}
+                image={item.urlToImage}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {item.title}
+                </Typography>
+                <Typography component="p">
+                  {item.description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button size="small" color="primary" href={item.url}>
+                Learn More
+              </Button>
+            </CardActions>
+          </Card>
+        ))}
+      </Grid>
+    )
+  }
+}
+
+export default withStyles(stylesBeta)(Main)
+

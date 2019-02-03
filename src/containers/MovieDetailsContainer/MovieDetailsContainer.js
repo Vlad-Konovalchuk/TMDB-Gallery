@@ -9,9 +9,9 @@ import { getTrailer } from '../../actions/movieTrailer'
 
 class MovieDetails extends Component {
   componentDidMount() {
-    this.props.getMovieItem(this.props.match.params.id);
-    this.props.getCrewList(this.props.match.params.id);
-    this.props.getTrailer(this.props.match.params.id);
+    this.props.getMovieItem(this.props.match.params.id)
+    this.props.getCrewList(this.props.match.params.id)
+    // this.props.getTrailer(this.props.match.params.id)
   }
 
   render() {
@@ -32,9 +32,9 @@ function mapDispatchToProps(dispatch) {
     getCrewList: id => {
       dispatch(getCrewList(id))
     },
-    getTrailer: id => {
-      dispatch(getTrailer(id))
-    },
+    // getTrailer: id => {
+    //   dispatch(getTrailer(id))
+    // },
   }
 }
 
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
   return {
     crew: state.crew.crew,
     item: state.movieItem.movieItem,
-    video: state.video.trailer,
+    // video: state.video.trailer,
     isLoading: state.movieItem.isLoading,
   }
 }

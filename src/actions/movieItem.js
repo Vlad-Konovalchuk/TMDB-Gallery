@@ -7,7 +7,7 @@ export const getMovieItem = (id) => async (dispatch) => {
   dispatch({ type: IS_LOADING, payload: true })
   try {
     const response = await axios.get(
-      `${BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}`,
+      `${BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}&append_to_response=videos`,
     )
     dispatch({ type: MOVIE_ITEM_FETCHED, payload: response.data })
   } catch (e) {

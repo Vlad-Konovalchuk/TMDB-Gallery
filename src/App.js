@@ -10,6 +10,7 @@ import MovieDetails from './containers/MovieDetailsContainer/MovieDetailsContain
 import MovieListContainer from './containers/MovieListContainer/MovieListContainer'
 import { ConnectedRouter } from 'connected-react-router'
 import SearchResult from './containers/SearchResult/SearchResult'
+import { NoMatch } from './components/NoMatch/NoMatch'
 
 class App extends Component {
   handleSearch = (e) => {
@@ -38,9 +39,10 @@ class App extends Component {
               <Route path={`${ROUTES.MOVIELIST}/:id`} component={MovieDetails}/>
               <Route path={`/search`} component={SearchResult}/>
               <Route path={ROUTES.HOME} exact component={Main}/>
+              <Route component={NoMatch}/>
             </Switch>
           </main>
-          <Footer/>
+          {/*<Footer/>*/}
         </div>
       </ConnectedRouter>
 

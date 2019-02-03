@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe');
+
+.nomatch {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background: #eea902;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: 'ZCOOL KuaiLe', cursive;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+.logo {
+  height: 100%;
+  border: 1px solid red;
+  border-radius: 121px;
+}

@@ -1,55 +1,53 @@
 import React, { Component } from 'react'
-import { getMovies } from '../../actions/movies'
-import { connect } from 'react-redux'
-import Loader from '../../components/Loader/Loader'
-import MovieItem from '../../components/MovieItem/MovieItem'
 import queryString from 'query-string'
+import axios from 'axios'
+import { TMDB_API_KEY } from '../../auth'
+import { POSTER_URL } from '../../urlPath'
 
 class SearchResult extends Component {
+  state = {
+    data: [],
+    isLoading: true,
+  }
+  getData = async (value) => {
+    // const data = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${TMDB_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`)
+    const data = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${value}&page=1&include_adult=true`)
+    return data.data.results
+  }
+
   componentDidMount() {
     try {
       const values = queryString.parse(this.props.location.search)
-      console.log(values.filter) // "top"
-
-      console.log(this.props.location.search) // "?filter=top&origin=im"
-      // console.log(this.props.location.search)
-      /*this.props.addArticle(category);*/
+      this.getData(values.query).then(res => this.setState({ data: res }))
     } catch (e) {
-      console.log(e)
+      /*      this.props.history.push({
+              pathname: '/error',
+              state: { message: e.message },
+            })*/
+      // new Error(e.message)
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 
   render() {
-    const { isLoading } = this.props
+    const { isLoading, data } = this.state
     return (
-      <section >
+      <section>
         Hell oSear Results
-        {this.props.location.search}
-        {/*  <ul className={styles.movies__list}>
-          {console.log(movies)}
-          {isLoading ? <Loader/> : <MovieItem movies={movies}/>}
-        </ul>*/}
+        <ol>
+          {isLoading ? <h3>Loading...</h3> :
+            data.map(item => (
+              <li key={item.id}>
+                <h2> {item.title || item.name}</h2>
+                <img src={POSTER_URL + item.poster_path} alt=""/>
+              </li>
+            ))
+          }
+        </ol>
       </section>
     )
   }
 }
 
-/*function mapDispatchToProps(dispatch) {
-  return {
-    addArticle: (category) => {
-      dispatch(getMovies(category))
-    }
-  };
-}*/
-/*
-const mapStateToProps = state => {
-  return {movies: state.movies.movies, isLoading: state.movies.isLoading};
-};*/
-
-/*
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MovieListContainer);
-*/
-export default SearchResult;
+export default SearchResult
