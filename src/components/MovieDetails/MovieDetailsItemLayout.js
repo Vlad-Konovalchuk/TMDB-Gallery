@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import styles from './MovieDetails.module.scss'
 import { transformCurrency, transformDate } from '../../utils'
+import Button from '@material-ui/core/Button'
+
+const AddionalMovies = lazy(() => import('../AddionalMovies/AddionalMovies'))
 
 const MovieDetailsItemLayout = props => {
   const {
@@ -12,7 +15,7 @@ const MovieDetailsItemLayout = props => {
     overview,
     poster_path,
     release_date,
-    videos={results:[]},
+    videos = { results: [] },
   } = props.info
   const { cast = [] } = props.cast
   return (
@@ -82,11 +85,22 @@ const MovieDetailsItemLayout = props => {
         </div>
       </section>
       <section className={styles.trailers}>
-{/*        {console.log(videos.results)}
+        {/*        {console.log(videos.results)}
         {videos.results &&    videos.results[0].key &&
         <iframe src={`https://www.youtube.com/watch?v=${videos.results[0].key}`} frameBorder="0" allowFullScreen/>
         }*/}
       </section>
+      <div>
+        <button data-category="similar" onClick={props.handleClick} className={`${styles.button} ${styles.active}`}>
+          Similar Movies
+        </button>
+        <button data-category="recommendations" onClick={props.handleClick} className={styles.button}>
+          Recommendations For you
+        </button>
+        <Suspense fallback={<div>Loading...</div>}>
+          {(!props.loading && props.data.length > 0) ? <AddionalMovies data={props.data}/> : <h2>Load</h2>}
+        </Suspense>
+      </div>
     </div>
   )
 }
