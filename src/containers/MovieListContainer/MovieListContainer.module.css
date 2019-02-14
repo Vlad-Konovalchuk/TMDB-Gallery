@@ -1,18 +1,14 @@
 .movies__list {
-    all: unset;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 2rem;
+  all: unset;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2rem;
 }
 
 .title {
-    text-align: center;
-    margin: 0 2rem;
-}
-.root {
-  padding: 1rem;
-  flex-grow: 1;
+  text-align: center;
+  margin: 0 2rem;
 }
 

@@ -76,11 +76,11 @@ const styles = theme => ({
 const Navbar = (props) => {
   const { classes,searchHandler } = props
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={stylesMain.header}>
       <Toolbar>
-        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+       {/* <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
           <MenuIcon/>
-        </IconButton>
+        </IconButton>*/}
         <Link to={ROUTES.HOME}>
           <img src={logo} alt="LogoType" className={stylesMain.header__image}/>
         </Link>

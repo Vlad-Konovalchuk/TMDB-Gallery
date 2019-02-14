@@ -1,4 +1,4 @@
-import * as type from '../actions/typeConstants'
+import * as type from '../actions/constants'
 
 const initialState = {
   movies: [],

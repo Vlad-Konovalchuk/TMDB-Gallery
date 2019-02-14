@@ -5,8 +5,6 @@ import * as ROUTES from "../../routes";
 import { POSTER_URL } from "../../urlPath";
 
 const MovieItem = ({movie}) => {
-  // const data = props.movies;
-
     return (
       <li  className={styles.movies__item}>
         <Link to={`${ROUTES.MOVIELIST}/${movie.id}`}>

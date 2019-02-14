@@ -9,13 +9,12 @@ import * as URL from './urlPath'
 import MovieDetails from './containers/MovieDetailsContainer/MovieDetailsContainer'
 import MovieListContainer from './containers/MovieListContainer/MovieListContainer'
 import { ConnectedRouter } from 'connected-react-router'
-import SearchResult from './containers/SearchResult/SearchResult'
+import SearchResultsContainer from './containers/SearchResultsContainer/SearchResultsContainer'
 import { NoMatch } from './components/NoMatch/NoMatch'
 
 class App extends Component {
   handleSearch = (e) => {
     if (e.key === 'Enter') {
-      console.log('do validate')
       this.props.history.push({
         pathname: '/search',
         search: `?query=${e.target.value}`,
@@ -37,12 +36,12 @@ class App extends Component {
               <Route path={ROUTES.TOP_RATED} component={(props) => (
                 <MovieListContainer {...props} category={URL.TOP_RATED_FILMS}/>)}/>
               <Route path={`${ROUTES.MOVIELIST}/:id`} component={MovieDetails}/>
-              <Route path={`/search`} component={SearchResult}/>
+              <Route path={`/search`} component={SearchResultsContainer}/>
               <Route path={ROUTES.HOME} exact component={Main}/>
               <Route component={NoMatch}/>
             </Switch>
           </main>
-          {/*<Footer/>*/}
+          <Footer/>
         </div>
       </ConnectedRouter>
 

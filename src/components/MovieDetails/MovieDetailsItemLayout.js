@@ -71,8 +71,8 @@ const MovieDetailsItemLayout = props => {
             {cast.slice(0, 6).map(item => (
               <li key={item.id} className={styles.cast__item}>
                 <img
-                  className={styles.cast__img}
-                  src={`http://image.tmdb.org/t/p/w45${item.profile_path}`}
+                  className={styles['cast__image']}
+                  src={`http://image.tmdb.org/t/p/w185${item.profile_path}`}
                   alt={item.name}
                 />
                 <p className={styles.movie__person}>
@@ -90,13 +90,13 @@ const MovieDetailsItemLayout = props => {
         <iframe src={`https://www.youtube.com/watch?v=${videos.results[0].key}`} frameBorder="0" allowFullScreen/>
         }*/}
       </section>
-      <div>
-        <button data-category="similar" onClick={props.handleClick} className={`${styles.button} ${styles.active}`}>
+      <div className={styles.additional}>
+        {/*        <button data-category="similar" onClick={props.handleClick} className={`${styles.button} ${styles.active}`}>
           Similar Movies
         </button>
         <button data-category="recommendations" onClick={props.handleClick} className={styles.button}>
           Recommendations For you
-        </button>
+        </button>*/}
         <Suspense fallback={<div>Loading...</div>}>
           {(!props.loading && props.data.length > 0) ? <AddionalMovies data={props.data}/> : <h2>Load</h2>}
         </Suspense>

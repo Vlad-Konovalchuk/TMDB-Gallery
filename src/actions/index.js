@@ -1,4 +1,4 @@
-import * as type from "./typeConstants";
+import * as type from "./constants";
 
 import axios from 'axios';
 

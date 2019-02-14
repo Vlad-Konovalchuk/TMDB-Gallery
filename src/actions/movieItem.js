@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BASE_URL } from '../urlPath'
 import { TMDB_API_KEY } from '../auth'
-import { FETCH_ERROR, IS_LOADING, MOVIE_ITEM_FETCHED } from './typeConstants'
+import { FETCH_ERROR, IS_LOADING, MOVIE_ITEM_FETCHED } from './constants'
 
 export const getMovieItem = (id) => async (dispatch) => {
   dispatch({ type: IS_LOADING, payload: true })

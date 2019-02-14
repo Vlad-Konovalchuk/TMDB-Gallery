@@ -4,6 +4,7 @@ import { moviesReducer } from './movies'
 import { movieItemReducer } from './movieItem'
 import { crewReducer } from './crew'
 import { trailerReducer } from './movieTrailer'
+import { searchReducer } from './search'
 
 
 export const rootReducer = (history) => combineReducers({
@@ -11,6 +12,7 @@ export const rootReducer = (history) => combineReducers({
   movieItem: movieItemReducer,
   crew: crewReducer,
   video: trailerReducer,
+  search: searchReducer,
   router: connectRouter(history),
 })
 

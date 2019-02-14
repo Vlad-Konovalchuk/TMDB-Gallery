@@ -1,12 +1,15 @@
 .app {
-/*  display: flex;
-  flex-direction: column;*/
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr 5fr 1fr;
   height: 100%;
+  width: 100%;
 }
 
 .layout {
-  height: 100%;
-  flex: 1;
-  /*overflow-y: auto;*/
   position: relative;
+  height: 100%;
+  width: 100%;
+  grid-column: 1/13;
+  grid-row: 2/3;
 }

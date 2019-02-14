@@ -70,6 +70,11 @@
   text-align: center;
 }
 
+.cast__image {
+  border-radius: 20%;
+  height: 50%;
+}
+
 .movie__person {
   display: flex;
   flex-direction: column;
@@ -160,4 +165,9 @@
   }
 }
 
-
+.additional {
+  li {
+    cursor: pointer;
+    margin: 0 0.4rem;
+  }
+}
