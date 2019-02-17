@@ -9,7 +9,7 @@ export const getCrewList = (id) => async (dispatch) => {
     const response = await axios.get(
       `${BASE_URL}/movie/${id}/credits?api_key=${TMDB_API_KEY}`,
     )
-    dispatch({ type: CREW_LIST_FETCHED, payload: response.data })
+    dispatch({ type: CREW_LIST_FETCHED, payload: response.data.cast })
   } catch (e) {
     dispatch({ type: FETCH_ERROR, payload: true })
   } finally {

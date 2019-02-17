@@ -1,11 +1,9 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import styles from './MovieDetails.module.scss'
 import { transformCurrency, transformDate } from '../../utils'
-import Button from '@material-ui/core/Button'
 
-const AddionalMovies = lazy(() => import('../AddionalMovies/AddionalMovies'))
 
-const MovieDetailsItemLayout = props => {
+const MovieDetailsItemLayout = (props) => {
   const {
     budget,
     production_countries = [],
@@ -15,12 +13,11 @@ const MovieDetailsItemLayout = props => {
     overview,
     poster_path,
     release_date,
-    videos = { results: [] },
-  } = props.info
-  const { cast = [] } = props.cast
+  } = props.movie
+  const { cast = [] } = props.castList
   return (
     <div className={styles.movie}>
-      <header className={styles.movie__header}>
+      <div className={styles.movie__header}>
         <img
           className={styles.movie__poster}
           src={`http://image.tmdb.org/t/p/w185${poster_path}`}
@@ -63,13 +60,13 @@ const MovieDetailsItemLayout = props => {
             ))}
           </ul>
         </div>
-      </header>
+      </div>
       <section className={styles.movie__body}>
         <div className={styles['movie__additional--noflex']}>
-          <h3 className={styles.sub__title}>Cast List: </h3>
+          <h3>Cast List: </h3>
           <ul className={styles.cast__list}>
-            {cast.slice(0, 6).map(item => (
-              <li key={item.id} className={styles.cast__item}>
+            {props.castList.slice(0, 7).map(item => (
+              <li className={styles.cast__item} key={item.name}>
                 <img
                   className={styles['cast__image']}
                   src={`http://image.tmdb.org/t/p/w185${item.profile_path}`}
@@ -84,23 +81,6 @@ const MovieDetailsItemLayout = props => {
           </ul>
         </div>
       </section>
-      <section className={styles.trailers}>
-        {/*        {console.log(videos.results)}
-        {videos.results &&    videos.results[0].key &&
-        <iframe src={`https://www.youtube.com/watch?v=${videos.results[0].key}`} frameBorder="0" allowFullScreen/>
-        }*/}
-      </section>
-      <div className={styles.additional}>
-        {/*        <button data-category="similar" onClick={props.handleClick} className={`${styles.button} ${styles.active}`}>
-          Similar Movies
-        </button>
-        <button data-category="recommendations" onClick={props.handleClick} className={styles.button}>
-          Recommendations For you
-        </button>*/}
-        <Suspense fallback={<div>Loading...</div>}>
-          {(!props.loading && props.data.length > 0) ? <AddionalMovies data={props.data}/> : <h2>Load</h2>}
-        </Suspense>
-      </div>
     </div>
   )
 }

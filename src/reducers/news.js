@@ -1,16 +1,17 @@
 import * as type from '../actions/constants'
 
 const initialState = {
-  trailer: [],
+  posts: [],
   isLoading: false,
 }
 
-export function trailerReducer(state = initialState, action) {
+
+export function newsReducer(state = initialState, action) {
   switch (action.type) {
-    case type.IS_LOADING:
+    case type.NEWS_FETCHING:
       return { ...state, isLoading: action.payload }
-    case type.MOVIE_TRAILER_FETCHED:
-      return { ...state, trailer: action.payload }
+    case type.NEWS_FETCHED_SUCCESS:
+      return { ...state, posts: action.payload }
     default:
       return state
   }

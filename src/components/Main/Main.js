@@ -1,44 +1,26 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getArticles } from '../../actions/news'
 import CardItem from '../CardItem/CardItem'
 import { List } from '../List/List'
 import Loader from '../Loader/Loader'
-import axios from 'axios'
 
 
-class Main extends PureComponent {
-  state = {
-    items: [],
-    spacing: 16,
-    loading: false,
-  }
-
-  getNewsItems = () => {
-    try {
-      this.setState({ loading: true })
-      return axios.get('https://newsapi.org/v2/everything?q=movies&apiKey=528fb017ce0c4f3c96e06bfda7644490')
-    } catch (e) {
-      // throw new Error(e.message)
-    } finally {
-      this.setState({ loading: false })
-    }
-  }
+class Main extends Component {
 
   componentDidMount() {
-    const data = this.getNewsItems()
-    data
-      .then(items => this.setState({ items: items.data.articles }))
+    this.props.getArticles()
   }
 
   render() {
-    const { items, loading } = this.state
-    const { classes } = this.props
+    const { news, isLoading } = this.props
 
-    if (loading) {
+    if (isLoading) {
       return <Loader/>
     }
     return (
       <List>
-        {items.map(item => (
+        {news.map(item => (
           <CardItem key={item.id} data={item}/>
         ))}
       </List>
@@ -46,5 +28,19 @@ class Main extends PureComponent {
   }
 }
 
-export default Main;
+function mapDispatchToProps(dispatch) {
+  return {
+    getArticles: () => {
+      dispatch(getArticles())
+    },
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    news: state.posts.posts,
+    isLoading: state.posts.isLoading,
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
 

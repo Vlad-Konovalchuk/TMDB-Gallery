@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import axios from 'axios'
+import { getAdditionalMovies } from '../../actions/similarMovies'
+import AddionalMovies from '../../components/AddionalMovies/AddionalMovies'
 import styles from './MovieDetailsContainer.module.css'
 import { connect } from 'react-redux'
 import { getMovieItem } from '../../actions/movieItem'
@@ -8,43 +9,27 @@ import Loader from '../../components/Loader/Loader'
 import MovieDetailsItemLayout from '../../components/MovieDetails/MovieDetailsItemLayout'
 
 class MovieDetails extends PureComponent {
-  state = {
-    additionalCategory: null,
-    data: [],
-    loading: false,
-  }
 
   componentDidMount() {
     this.props.getMovieItem(this.props.match.params.id)
     this.props.getCrewList(this.props.match.params.id)
-    this.setState({ loading: true })
-    this.getAdditionalMovies('similar')
-      .then(data => this.setState({ data: data.data.results }, () => this.setState({ loading: false })))
-  }
-
-  handleClick = (e) => {
-    this.setState({ loading: true })
-    const value = e.target.dataset.category
-    this.getAdditionalMovies(value)
-      .then(data => this.setState({ data: data.data.results }, () => this.setState({ loading: false })))
-
-  }
-  getAdditionalMovies = async (value) => {
-    return axios.get(`https://api.themoviedb.org/3/movie/297802/${value}?api_key=${process.env.REACT_APP_SECRET_CODE}&language=en-US&page=1`)
+    this.props.getAdditionalMovies(this.props.match.params.id)
   }
 
   render() {
-    const { item, crew, isLoading } = this.props
+    const { item, crew, similar, isLoadingMovie, isLoadingCrew, isLoadingSimilar } = this.props
     return (
       <section className={styles.movie}>
-        {isLoading ? <Loader/> :
-          <MovieDetailsItemLayout
-            info={item}
-            cast={crew}
-            handleClick={this.handleClick}
-            data={this.state.data}
-            loading={this.state.loading}
-          />}
+        {(isLoadingMovie && isLoadingCrew && isLoadingSimilar) ? <Loader/> :
+          <>
+            <MovieDetailsItemLayout
+              movie={item}
+              castList={crew}
+            />
+            <h3>Additional Movies:</h3>
+            <AddionalMovies data={similar}/>
+          </>
+        }
       </section>
     )
   }
@@ -58,14 +43,20 @@ function mapDispatchToProps(dispatch) {
     getCrewList: id => {
       dispatch(getCrewList(id))
     },
+    getAdditionalMovies: id => {
+      dispatch(getAdditionalMovies(id))
+    },
   }
 }
 
 const mapStateToProps = state => {
   return {
-    crew: state.crew.crew,
+    isLoadingMovie: state.movieItem.isLoading,
+    isLoadingCrew: state.crew.isLoading,
+    isLoadingSimilar: state.similar.isLoading,
     item: state.movieItem.movieItem,
-    isLoading: state.movieItem.isLoading,
+    crew: state.crew.crew,
+    similar: state.similar.items,
   }
 }
 

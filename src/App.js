@@ -35,8 +35,10 @@ class App extends Component {
                 <MovieListContainer {...props} category={URL.NOW_PLAYING_FILMS}/>)}/>
               <Route path={ROUTES.TOP_RATED} component={(props) => (
                 <MovieListContainer {...props} category={URL.TOP_RATED_FILMS}/>)}/>
-              <Route path={`${ROUTES.MOVIELIST}/:id`} component={MovieDetails}/>
-              <Route path={`/search`} component={SearchResultsContainer}/>
+              <Route path={`${ROUTES.MOVIELIST}/:id`}
+                     component={(props) => <MovieDetails {...props} key={props.match.params.id}/>}/>
+              <Route path={`/search`}
+                     component={props => <SearchResultsContainer {...props} key={props.location.search}/>}/>
               <Route path={ROUTES.HOME} exact component={Main}/>
               <Route component={NoMatch}/>
             </Switch>

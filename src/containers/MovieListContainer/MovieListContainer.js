@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { List } from '../../components/List/List'
-import styles from './MovieListContainer.module.css'
 import { getMovies } from '../../actions/movies'
 import { connect } from 'react-redux'
 import Loader from '../../components/Loader/Loader'

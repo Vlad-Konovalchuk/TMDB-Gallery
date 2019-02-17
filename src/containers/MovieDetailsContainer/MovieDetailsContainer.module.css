@@ -1,50 +1,55 @@
 .movie {
-    height: 100%;
-    display: flex;
+  padding: 0 16px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
 }
 
 .movie__wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
 }
 
 .movie__poster {
-    margin-right: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .movie__details {
 }
 
 .movie__title {
-    text-align: center;
-    font-weight: 500;
+  text-align: center;
+  font-weight: 500;
 }
 
 .sub__title {
-    font-size: 1rem;
-    margin: 0;
-    padding: 0;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
 }
 
 .movie__date {
 }
 
 .genre__list {
-    all: unset;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  all: unset;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .genre__title {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .genre__list__item {
-    all: unset;
-    margin: 0 0.2rem;
+  all: unset;
+  margin: 0 0.2rem;
 }
 
 .movie__list {

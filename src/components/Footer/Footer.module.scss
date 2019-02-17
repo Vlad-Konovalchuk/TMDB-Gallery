@@ -1,6 +1,6 @@
 .footer {
-  grid-column: 1/13;
-  grid-row: 3/4;
+  max-height: 23px;
+  grid-area: ft;
   display: flex;
   justify-content: center;
   align-items: center;

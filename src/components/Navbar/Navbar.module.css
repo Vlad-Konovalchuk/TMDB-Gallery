@@ -1,9 +1,6 @@
 .header {
-  grid-column: 1/13;
-  grid-row: 1/2;
+  grid-area: hd;
   height: 60px;
-  /*display: flex;*/
-  /*justify-content: space-between;*/
   background-color: #282c34;
   color: #ffffff;
   padding: 0 1rem;
